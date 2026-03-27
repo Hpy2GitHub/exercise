@@ -15,6 +15,7 @@ import {
 import { ExerciseCard } from '../components/ExerciseCard';
 import { PrintButton } from '../components/PrintButton';
 import { Exercise, ExerciseList } from '../types';
+import { features } from "../config/features";
 
 interface ExerciseListDetailViewProps {
   list: ExerciseList | null;

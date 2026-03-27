@@ -3,7 +3,7 @@ import { ComponentType, useState } from 'react';
 import { Eye, Edit2, Trash2, ImageOff } from 'lucide-react';
 import { Exercise, ExerciseList } from '../types';
 import { getThumbnailUrl, getPublicUrl } from '../utils/paths';
-
+import { features } from "../config/features";
 
 interface ExerciseCardProps {
   exercise: Exercise;

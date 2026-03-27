@@ -4,6 +4,7 @@ import { ChangeEventHandler, MouseEventHandler } from 'react';
 import { Table, Upload, Download, List } from 'lucide-react';
 import { NewExerciseButton } from './NewExerciseButton';
 import { Anchor } from './Anchor'; 
+import { features } from "../config/features";
 
 /**
  * Define the props for the Header component.
@@ -61,6 +62,7 @@ export const Header = ({
             Last updated: {currentTime}
           </p>
           
+          {features.canEdit && (
           <div className="flex flex-row gap-4 mt-2 text-sm">
             <Anchor
               href={`${import.meta.env.BASE_URL}tracer.html`}
@@ -75,9 +77,11 @@ export const Header = ({
               Verify
             </Anchor>
           </div>
-        </div>
-
+          )}
+          </div>
+          
         <div className="flex flex-wrap gap-3">
+        {features.showListsView && (
           <button
             onClick={onListsView}
             className="flex items-center gap-2 px-5 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-medium"
@@ -85,7 +89,9 @@ export const Header = ({
             <List size={20} />
             My Lists
           </button>
+          )}
 
+          {features.showTableView && (
           <button
             onClick={onTableView}
             className="flex items-center gap-2 px-5 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition font-medium"
@@ -93,6 +99,7 @@ export const Header = ({
             <Table size={20} />
             Table View
           </button>
+          )}
 
           {/* Import Button with File Input */}
           <label className="cursor-pointer" title="Import data from backup file">
@@ -107,7 +114,8 @@ export const Header = ({
               Import
             </div>
           </label>
-
+          
+          {features.canExport && (
           <button
             onClick={onExport}
             title="Export data to backup file"
@@ -116,8 +124,10 @@ export const Header = ({
             <Download size={20} />
             Export
           </button>
+          )}
 
-          <NewExerciseButton onClick={onAddNew} />
+          {features.canEdit && 
+          <NewExerciseButton onClick={onAddNew} />}
         </div>
       </div>
 

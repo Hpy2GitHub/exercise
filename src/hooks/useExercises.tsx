@@ -3,10 +3,13 @@
 // Load order:  API  →  localStorage  →  defaults
 // Save:        localStorage (sync) + API (async background, silent on failure)
 
+// TODO: where to put the new guard for local storage?
+
 import { useState, useEffect } from 'react';
 import { Exercise, ExerciseList, ExportData } from '../types';
 import { DEFAULT_DATA, isUsingDefaultData } from '../data/defaultExercises';
 import { apiLoad, apiSave } from '../services/exerciseApi';
+import { features } from "../config/features";
 
 type ViewMode = 'cards' | 'detail' | 'table' | 'lists' | 'listDetail';
 
@@ -182,24 +185,48 @@ validatedExercises.forEach(ex => {
       console.warn('⚠️  API load failed — falling back to localStorage:', err);
     }
 
-    // 2. Try localStorage
-    try {
-      const saved = localStorage.getItem('exercises-data');
-      if (saved) {
-        const rawData = JSON.parse(saved);
-        const { exercises: validatedExercises, lists: validatedLists } = validateAndParseData(rawData);
-
-        if (validatedExercises.length > 0) {
-          setExercises(validatedExercises);
-          setLists(validatedLists);
-          setIsUsingDefaults(isUsingDefaultData(validatedExercises));
-          console.log('✅ Loaded from localStorage (API was unavailable)');
-          return;
+      // 2. Try localStorage
+//    try {
+//      const saved = localStorage.getItem('exercises-data');
+//      if (saved) {
+//        const rawData = JSON.parse(saved);
+//        const { exercises: validatedExercises, lists: validatedLists } = validateAndParseData(rawData);
+//
+//        if (validatedExercises.length > 0) {
+//          setExercises(validatedExercises);
+//          setLists(validatedLists);
+//          setIsUsingDefaults(isUsingDefaultData(validatedExercises));
+//          console.log('✅ Loaded from localStorage (API was unavailable)');
+//          return;
+      //        }
+      //      }
+      // 2. Try localStorage
+      //    } catch (err) {
+      //      console.warn('⚠️  localStorage load failed:', err);
+      //    }
+      
+      // 2. Try localStorage
+            // 2. Try localStorage
+      if (features.canUseLocalData) {
+        try {
+          const saved = localStorage.getItem('exercises-data');
+          if (saved) {
+            const rawData = JSON.parse(saved);
+            const { exercises: validatedExercises, lists: validatedLists } = validateAndParseData(rawData);
+      
+            if (validatedExercises.length > 0) {
+              setExercises(validatedExercises);
+              setLists(validatedLists);
+              setIsUsingDefaults(isUsingDefaultData(validatedExercises));
+              console.log('✅ Loaded from localStorage (API was unavailable)');
+              return;
+            }
+          }
+        } catch (err) {
+          console.warn('⚠️ localStorage load failed:', err);
         }
       }
-    } catch (err) {
-      console.warn('⚠️  localStorage load failed:', err);
-    }
+
 
     // 3. Fall back to built-in defaults
     console.log('📦 Loading default exercise data…');

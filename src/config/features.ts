@@ -54,6 +54,9 @@ export const features = {
   /** Show the DefaultDataBanner ("you are viewing sample data") */
   showDefaultDataBanner: import.meta.env.VITE_SHOW_DEFAULT_DATA_BANNER === 'true',
 
+  /** Do or Don't check local storage for data */
+  canUseLocalData: import.meta.env.VITE_CAN_USE_LOCAL_DATA === 'true',
+
 } as const;
 
 // Convenience: true when ALL write features are off

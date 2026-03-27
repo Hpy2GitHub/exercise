@@ -236,8 +236,7 @@ export const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
               </div>
             </div>
             <div className="flex gap-3">
-
-            {features.canEdit  && onEdit && (
+              {onEdit && (
                 <button
                   onClick={onEdit}
                   className="px-5 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition flex items-center gap-2"

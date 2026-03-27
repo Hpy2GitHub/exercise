@@ -1,6 +1,7 @@
 // components/PrintButton.tsx
 import { ComponentType } from 'react';
 import { Printer } from 'lucide-react';
+import { features } from "../config/features";
 
 export const PrintButton: React.FC = () => {
   const handlePrint = () => {

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Eye, Edit2, Trash2, Plus, ArrowLeft } from 'lucide-react';
 import { Exercise, ExerciseList } from '../types';  // Import from types
+import { features } from "../config/features";
 
 export interface ExerciseListsViewProps {
   lists: ExerciseList[];

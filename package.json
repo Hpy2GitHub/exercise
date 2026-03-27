@@ -11,25 +11,26 @@
     "zod": "^3.22.4"
   },
   "scripts": {
-   "build": "vite build",
-   "build:npm": "vite build --mode npm",
-   "build:apache": "vite build --mode apache",
-   "build:github": "vite build --mode github",
-   "build:check": "tsc && vite build",
-   "type-check": "tsc --noEmit", 
-   "preview": "vite preview",
-   "lint": "eslint ."
+    "dev": "vite",
+    "build": "vite build",
+    "build:npm": "vite build --mode npm",
+    "build:apache": "vite build --mode apache",
+    "build:github": "vite build --mode github",
+    "build:check": "tsc && vite build",
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
-    "autoprefixer": "^10.4.23",
-    "postcss": "^8.5.6",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
     "prettier": "3.8.1",
     "prettier-plugin-tailwindcss": "0.7.2",
-    "tailwindcss": "3.4.19",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
     "vite": "^5.4.21",
     "vite-plugin-pwa": "^1.2.0"

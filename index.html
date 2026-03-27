@@ -1,15 +1,28 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>merged-exercise</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <h1>Hello World</h1>
-    <a href='plan.htm'>Migration Plan</a>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+Exercises
+</head>
+<body>
+  <div id="root">
+    <p style="padding:20px;font-family:sans-serif">Loading... (if you see this, React never mounted)</p>
+  </div>
+
+  <script>
+    window.addEventListener('error', function(e) {
+      document.getElementById('root').innerHTML =
+        '<pre style="padding:20px;color:red;white-space:pre-wrap">' +
+        'JS ERROR:\n' + e.message + '\n' + e.filename + ':' + e.lineno +
+        '</pre>';
+    });
+    window.addEventListener('unhandledrejection', function(e) {
+      document.getElementById('root').innerHTML =
+        '<pre style="padding:20px;color:red;white-space:pre-wrap">' +
+        'UNHANDLED PROMISE REJECTION:\n' + e.reason +
+        '</pre>';
+    });
+  </script>
+
+  <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>
