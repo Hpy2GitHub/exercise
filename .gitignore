@@ -8,6 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 bak/
 bak/*
+*.mp4
+public/videos
 
 node_modules
 dist
