@@ -65,5 +65,8 @@ export const features = {
   canUseApi: import.meta.env.VITE_CAN_USE_API === 'true',
 } as const;
 
+console.log('🚩 features:', JSON.stringify(features, null, 2));
+
 // Convenience: true when ALL write features are off
 export const isReadOnly = !features.canEdit && !features.canImport;
+
