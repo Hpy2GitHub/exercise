@@ -48,6 +48,8 @@ export const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
         : getThumbnailUrl(exercise.thumbnailLink))
     : null;
 
+  const showMediaPanel = features.showVideos || features.showImages || features.showMuscleDiagram;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
       <div className="max-w-6xl mx-auto">
@@ -102,25 +104,25 @@ export const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           )}
         </div>
 
-        <div className="bg-white rounded-xl shadow-xl p-8 mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-            Exercise Demo & Target Muscles
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <ExerciseMedia
-              name={exercise.name}
-              hasVideo={exercise.hasVideo}
-              videoUrl={videoUrl}
-              posterUrl={posterUrl}
-              fallbackImageUrl={fallbackImageUrl}
-            />
-
-            {features.showMuscleDiagram && (
-              <MuscleDiagram exercise={exercise} muscleDiagramData={muscleDiagramData} />
-            )}
+        {showMediaPanel && (
+          <div className="bg-white rounded-xl shadow-xl p-8 mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+              Exercise Demo & Target Muscles
+            </h2>
+            <div className="flex flex-col gap-8">
+              <ExerciseMedia
+                name={exercise.name}
+                hasVideo={exercise.hasVideo}
+                videoUrl={videoUrl}
+                posterUrl={posterUrl}
+                fallbackImageUrl={fallbackImageUrl}
+              />
+              {features.showMuscleDiagram && (
+                <MuscleDiagram exercise={exercise} muscleDiagramData={muscleDiagramData} />
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {exercise.musclesTargeted && exercise.musclesTargeted.length > 0 && (
           <div className="bg-white rounded-xl shadow-xl p-8 mb-6">
@@ -212,7 +214,7 @@ export const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           </div>
         )}
 
-        {lists.length > 0 && onToggleList && features.canManageLists && (
+        {lists.length > 0 && onToggleList && (
           <ExerciseListSelector
             exerciseKey={exercise.key}
             lists={lists}
