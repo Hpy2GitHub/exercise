@@ -475,7 +475,7 @@ export const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           </div>
         )}
 
-        {lists && lists.length > 0 && onToggleList && (
+        {lists && lists.length > 0 && onToggleList && features.canManageLists && (
           <div className="bg-white rounded-xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Add to Lists

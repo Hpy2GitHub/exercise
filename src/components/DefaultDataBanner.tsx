@@ -1,6 +1,7 @@
 // src/components/DefaultDataBanner.tsx
 import React, { useState } from 'react';
 import { Info, X, RotateCcw, Download } from 'lucide-react';
+import { features } from "../config/features";
 
 interface DefaultDataBannerProps {
   isVisible: boolean;
@@ -27,6 +28,8 @@ export const DefaultDataBanner: React.FC<DefaultDataBannerProps> = ({
   };
 
   return (
+   <>
+   {features.showDefaultDataBanner && (
     <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-indigo-500 rounded-lg shadow-md mb-6 overflow-hidden">
       <div className="p-4">
         <div className="flex items-start gap-4">
@@ -94,5 +97,7 @@ export const DefaultDataBanner: React.FC<DefaultDataBannerProps> = ({
         </div>
       </div>
     </div>
+  )}
+  </>
   );
 };
