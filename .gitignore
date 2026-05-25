@@ -12,6 +12,7 @@ bak/*
 *.mp4
 videos/*
 public/videos/*
+archive/
 
 node_modules
 dist
